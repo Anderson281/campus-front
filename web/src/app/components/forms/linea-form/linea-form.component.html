@@ -1,0 +1,28 @@
+<mat-card>
+  <mat-card-title>Formulario campus_lineas</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="controlsGroup">
+      <mat-form-field><input matInput id="id" name="id" placeholder="id" [formControl]="id"></mat-form-field><br>
+      <mat-form-field><input matInput id="tipo_via" name="tipo_via" placeholder="tipo_via" [formControl]="tipo_via"></mat-form-field><br>
+      <mat-form-field><input matInput id="pavimento" name="pavimento" placeholder="pavimento" [formControl]="pavimento"></mat-form-field><br>
+      <mat-form-field><input matInput id="accesible" name="accesible" placeholder="true/false" [formControl]="accesible"></mat-form-field><br>
+      <mat-form-field><input matInput id="codigo_tramo" name="codigo_tramo" placeholder="codigo_tramo" [formControl]="codigo_tramo"></mat-form-field><br>
+      <mat-form-field><input matInput id="observacion" name="observacion" placeholder="observacion" [formControl]="observacion"></mat-form-field><br>
+      <mat-form-field><input matInput id="longitud" name="longitud" placeholder="longitud calculada" [formControl]="longitud"></mat-form-field><br>
+      <mat-form-field><input matInput id="geom" name="geom" placeholder="LINESTRING(10 10, 20 20)" [formControl]="geom"></mat-form-field>
+      <div class="buttons">
+        <button mat-raised-button color="primary" [disabled]="!controlsGroup.valid" (click)="insert()">Insert</button>
+        <button mat-raised-button (click)="selectOne()">Select one</button>
+        <button mat-raised-button (click)="selectAll()">Select all</button>
+        <button mat-raised-button color="accent" [disabled]="!controlsGroup.valid" (click)="update()">Update</button>
+        <button mat-raised-button color="warn" (click)="deleteRow()">Delete</button>
+        <button mat-button (click)="clearForm()">Clean</button>
+      </div>
+    </form>
+    <p class="message">{{ serverMessage }}</p>
+  </mat-card-content>
+</mat-card>
+<table class="data-table" *ngIf="rows.length > 0">
+  <tr><th>id</th><th>tipo_via</th><th>codigo</th><th>longitud</th><th>geom</th></tr>
+  <tr *ngFor="let row of rows"><td>{{ row.id }}</td><td>{{ row.tipo_via }}</td><td>{{ row.codigo_tramo }}</td><td>{{ row.longitud }}</td><td>{{ row.geom }}</td></tr>
+</table>

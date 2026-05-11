@@ -1,4 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+mat-card { max-width: 980px; margin: 18px auto; padding: 12px; }
+mat-form-field { width: 95%; max-width: 760px; }
+.buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.message { margin-top: 12px; font-weight: 600; }
+.data-table { width: 96%; margin: 14px auto; border-collapse: collapse; font-size: 13px; }
+.data-table th, .data-table td { border: 1px solid #c7c7c7; padding: 6px; vertical-align: top; }
+.data-table th { background: #e9eef5; }
+.menu { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px; background: #eef3f8; }
+.page { padding: 8px 16px; }

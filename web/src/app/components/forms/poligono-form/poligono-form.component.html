@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-card-title>Formulario campus_poligonos</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="controlsGroup">
+      <mat-form-field><input matInput id="id" name="id" placeholder="id" [formControl]="id"></mat-form-field><br>
+      <mat-form-field><input matInput id="nombre" name="nombre" placeholder="nombre" [formControl]="nombre"></mat-form-field><br>
+      <mat-form-field><input matInput id="uso_principal" name="uso_principal" placeholder="uso_principal" [formControl]="uso_principal"></mat-form-field><br>
+      <mat-form-field><input matInput id="pisos" name="pisos" placeholder="pisos" [formControl]="pisos"></mat-form-field><br>
+      <mat-form-field><input matInput id="estado" name="estado" placeholder="estado" [formControl]="estado"></mat-form-field><br>
+      <mat-form-field><input matInput id="observacion" name="observacion" placeholder="observacion" [formControl]="observacion"></mat-form-field><br>
+      <mat-form-field><input matInput id="area" name="area" placeholder="area calculada" [formControl]="area"></mat-form-field><br>
+      <mat-form-field><input matInput id="perimetro" name="perimetro" placeholder="perimetro calculado" [formControl]="perimetro"></mat-form-field><br>
+      <mat-form-field><input matInput id="geom" name="geom" placeholder="POLYGON((0 0, 100 0, 100 100, 0 100, 0 0))" [formControl]="geom"></mat-form-field>
+      <div class="buttons">
+        <button mat-raised-button color="primary" [disabled]="!controlsGroup.valid" (click)="insert()">Insert</button>
+        <button mat-raised-button (click)="selectOne()">Select one</button>
+        <button mat-raised-button (click)="selectAll()">Select all</button>
+        <button mat-raised-button color="accent" [disabled]="!controlsGroup.valid" (click)="update()">Update</button>
+        <button mat-raised-button color="warn" (click)="deleteRow()">Delete</button>
+        <button mat-button (click)="clearForm()">Clean</button>
+      </div>
+    </form>
+    <p class="message">{{ serverMessage }}</p>
+  </mat-card-content>
+</mat-card>
+<table class="data-table" *ngIf="rows.length > 0">
+  <tr><th>id</th><th>nombre</th><th>uso</th><th>area</th><th>geom</th></tr>
+  <tr *ngFor="let row of rows"><td>{{ row.id }}</td><td>{{ row.nombre }}</td><td>{{ row.uso_principal }}</td><td>{{ row.area }}</td><td>{{ row.geom }}</td></tr>
+</table>

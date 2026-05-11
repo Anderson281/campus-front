@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-title>Formulario campus_puntos</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="controlsGroup">
+      <p>Id solo es obligatorio para selectone, update y delete.</p>
+
+      <mat-form-field><input matInput id="id" name="id" placeholder="id" [formControl]="id"></mat-form-field><br>
+      <mat-form-field><input matInput id="tipo" name="tipo" placeholder="tipo" [formControl]="tipo"></mat-form-field><br>
+      <mat-form-field><input matInput id="estado" name="estado" placeholder="estado" [formControl]="estado"></mat-form-field><br>
+      <mat-form-field><input matInput id="material" name="material" placeholder="material" [formControl]="material"></mat-form-field><br>
+      <mat-form-field><input matInput id="codigo_inventario" name="codigo_inventario" placeholder="codigo_inventario" [formControl]="codigo_inventario"></mat-form-field><br>
+      <mat-form-field><input matInput id="observacion" name="observacion" placeholder="observacion" [formControl]="observacion"></mat-form-field><br>
+      <mat-form-field><input matInput id="geom" name="geom" placeholder="POINT(20 20)" [formControl]="geom"></mat-form-field>
+
+      <div class="buttons">
+        <button mat-raised-button color="primary" [disabled]="!controlsGroup.valid" (click)="insert()">Insert</button>
+        <button mat-raised-button (click)="selectOne()">Select one</button>
+        <button mat-raised-button (click)="selectAll()">Select all</button>
+        <button mat-raised-button color="accent" [disabled]="!controlsGroup.valid" (click)="update()">Update</button>
+        <button mat-raised-button color="warn" (click)="deleteRow()">Delete</button>
+        <button mat-button (click)="clearForm()">Clean</button>
+      </div>
+    </form>
+    <p class="message">{{ serverMessage }}</p>
+  </mat-card-content>
+</mat-card>
+
+<table class="data-table" *ngIf="rows.length > 0">
+  <tr><th>id</th><th>tipo</th><th>estado</th><th>codigo</th><th>geom</th></tr>
+  <tr *ngFor="let row of rows">
+    <td>{{ row.id }}</td><td>{{ row.tipo }}</td><td>{{ row.estado }}</td><td>{{ row.codigo_inventario }}</td><td>{{ row.geom }}</td>
+  </tr>
+</table>
