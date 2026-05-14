@@ -12,7 +12,8 @@ import { PuntoModel } from '../../../models/punto.model';
 @Component({
   selector: 'app-punto-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatInputModule, MatTooltipModule, MatButtonModule, MatCardModule],
+  imports: [
+    CommonModule, ReactiveFormsModule, MatInputModule, MatTooltipModule, MatButtonModule, MatCardModule],
   templateUrl: './punto-form.component.html',
   styleUrl: './punto-form.component.scss'
 })
@@ -25,8 +26,8 @@ export class PuntoFormComponent {
   observacion = new FormControl('');
   geom = new FormControl('', [Validators.required]);
 
-  controlsGroup = new FormGroup({
-    id: this.id,
+  controlsGroup = new FormGroup({              // Grupo de controles. 9.12.2 
+    id: this.id,                                // Create a form group to eval the data at once
     tipo: this.tipo,
     estado: this.estado,
     material: this.material,
