@@ -1,0 +1,22 @@
+:host {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-shell {
+  flex: 1;
+  padding: 16px 20px 14px;
+}
+
+.page-content {
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .page-shell {
+    padding: 12px 12px 14px;
+  }
+}

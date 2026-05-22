@@ -1,33 +1,80 @@
-<mat-card>
-  <mat-card-title>Formulario campus_puntos</mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="controlsGroup">
-      <p>Id solo es obligatorio para selectone, update y delete.</p>
+<section class="form-page">
+  <div class="form-header">
+    <div>
+      <p class="eyebrow">Capa vectorial - Formulario campus_puntos</p>
+      <p>Administra elementos puntuales del campus.</p>
+    </div>
+  </div>
 
-      <mat-form-field><input matInput id="id" name="id" placeholder="id" [formControl]="id"></mat-form-field><br>
-      <mat-form-field><input matInput id="tipo" name="tipo" placeholder="tipo" [formControl]="tipo"></mat-form-field><br>
-      <mat-form-field><input matInput id="estado" name="estado" placeholder="estado" [formControl]="estado"></mat-form-field><br>
-      <mat-form-field><input matInput id="material" name="material" placeholder="material" [formControl]="material"></mat-form-field><br>
-      <mat-form-field><input matInput id="codigo_inventario" name="codigo_inventario" placeholder="codigo_inventario" [formControl]="codigo_inventario"></mat-form-field><br>
-      <mat-form-field><input matInput id="observacion" name="observacion" placeholder="observacion" [formControl]="observacion"></mat-form-field><br>
-      <mat-form-field><input matInput id="geom" name="geom" placeholder="POINT(20 20)" [formControl]="geom"></mat-form-field>
+  <mat-card class="form-card">
+    <mat-card-content>
+      <form [formGroup]="controlsGroup">
+        <p class="helper-text">
+          El campo <strong>id</strong> solo es obligatorio para selectone, update y delete.
+        </p>
 
-      <div class="buttons">
-        <button mat-raised-button color="primary" [disabled]="!controlsGroup.valid" (click)="insert()">Insert</button>
-        <button mat-raised-button (click)="selectOne()">Select one</button>
-        <button mat-raised-button (click)="selectAll()">Select all</button>
-        <button mat-raised-button color="accent" [disabled]="!controlsGroup.valid" (click)="update()">Update</button>
-        <button mat-raised-button color="warn" (click)="deleteRow()">Delete</button>
-        <button mat-button (click)="clearForm()">Clean</button>
-      </div>
-    </form>
-    <p class="message">{{ serverMessage }}</p>
-  </mat-card-content>
-</mat-card>
+        <div class="form-grid">
+          <mat-form-field>
+            <input matInput id="id" name="id" placeholder="id" [formControl]="id">
+          </mat-form-field>
 
-<table class="data-table" *ngIf="rows.length > 0">
-  <tr><th>id</th><th>tipo</th><th>estado</th><th>codigo</th><th>geom</th></tr>
-  <tr *ngFor="let row of rows">
-    <td>{{ row.id }}</td><td>{{ row.tipo }}</td><td>{{ row.estado }}</td><td>{{ row.codigo_inventario }}</td><td>{{ row.geom }}</td>
-  </tr>
-</table>
+          <mat-form-field>
+            <input matInput id="tipo" name="tipo" placeholder="tipo" [formControl]="tipo">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput id="estado" name="estado" placeholder="estado" [formControl]="estado">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput id="material" name="material" placeholder="material" [formControl]="material">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput id="codigo_inventario" name="codigo_inventario" placeholder="codigo_inventario" [formControl]="codigo_inventario">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput id="observacion" name="observacion" placeholder="observacion" [formControl]="observacion">
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input matInput id="geom" name="geom" placeholder="POINT(20 20)" [formControl]="geom">
+          </mat-form-field>
+        </div>
+
+        <div class="buttons">
+          <button mat-raised-button class="btn-primary" color="primary" [disabled]="!controlsGroup.valid" (click)="insert()">Insert</button>
+          <button mat-raised-button class="btn-light" (click)="selectOne()">Select one</button>
+          <button mat-raised-button class="btn-light" (click)="selectAll()">Select all</button>
+          <button mat-raised-button class="btn-warning" color="accent" [disabled]="!controlsGroup.valid" (click)="update()">Update</button>
+          <button mat-raised-button class="btn-danger" color="warn" (click)="deleteRow()">Delete</button>
+          <button mat-raised-button class="btn-light" (click)="fillCampusData()">Fill Data</button>
+          <button mat-button class="btn-clean" (click)="clearForm()">Clean</button>
+        </div>
+      </form>
+
+      <p class="message" *ngIf="serverMessage">{{ serverMessage }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="table-card" *ngIf="rows.length > 0">
+    <table class="data-table">
+      <tr>
+        <th>id</th>
+        <th>tipo</th>
+        <th>estado</th>
+        <th>codigo</th>
+        <th>geom</th>
+      </tr>
+
+      <tr *ngFor="let row of rows">
+        <td>{{ row.id }}</td>
+        <td>{{ row.tipo }}</td>
+        <td>{{ row.estado }}</td>
+        <td>{{ row.codigo_inventario }}</td>
+        <td>{{ row.geom }}</td>
+      </tr>
+    </table>
+  </div>
+</section>

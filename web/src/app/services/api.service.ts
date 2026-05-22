@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+
 import { SettingsService } from './settings.service';
 
 @Injectable({ providedIn: 'root' })
@@ -13,6 +14,8 @@ export class ApiService {
     private httpClient: HttpClient
   ) {}
 
+  // this.API_URL = 'http://localhost:8001/';
+  //                                        campus/insert/
   get(endPointUrl: string, getParams: HttpParams = new HttpParams({})) {
     return this.httpClient.get<any>(this.settingsService.API_URL + endPointUrl, {
       headers: this.headers,
@@ -54,3 +57,5 @@ export class ApiService {
     return params.toString();
   }
 }
+
+// id=&description=gg&area=236&geom=polygon((0%200,%201%200,%201%201,%200%200))
