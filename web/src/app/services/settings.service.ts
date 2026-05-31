@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class SettingsService {
+  public DEBUG = true;
   // 1 = local, 2 = dominio/produccion
   public mode = 1;
 
