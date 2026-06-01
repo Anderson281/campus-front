@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -23,7 +23,7 @@ import { LineaModel } from '../../../models/linea.model';
   templateUrl: './linea-form.component.html',
   styleUrl: './linea-form.component.scss'
 })
-export class LineaFormComponent {
+export class LineaFormComponent implements OnInit {
 
   // Campos del formulario.
   id = new FormControl('');
@@ -54,6 +54,23 @@ export class LineaFormComponent {
   rows: LineaModel[] = [];
 
   constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.loadGeomFromMap();
+  }
+
+  // Lee la geometría dibujada en el mapa y la coloca en el campo geom.
+  private loadGeomFromMap(): void {
+    const wkt = localStorage.getItem('geom_lineas');
+
+    if (wkt) {
+      this.geom.setValue(wkt);
+      this.geom.markAsDirty();
+      this.geom.updateValueAndValidity();
+      localStorage.removeItem('geom_lineas');
+      this.serverMessage = 'Geometría de línea cargada desde el mapa';
+    }
+  }
 
   // Construye las rutas hacia Django.
   private endpoint(action: string, id: string | null = null): string {
@@ -229,5 +246,6 @@ export class LineaFormComponent {
   clearForm() {
     this.controlsGroup.reset({ accesible: 'true' });
     this.serverMessage = '';
+    localStorage.removeItem('geom_lineas');
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -23,7 +23,7 @@ import { PoligonoModel } from '../../../models/poligono.model';
   templateUrl: './poligono-form.component.html',
   styleUrl: './poligono-form.component.scss'
 })
-export class PoligonoFormComponent {
+export class PoligonoFormComponent implements OnInit {
 
   // Campos del formulario.
   id = new FormControl('');
@@ -56,6 +56,23 @@ export class PoligonoFormComponent {
   rows: PoligonoModel[] = [];
 
   constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.loadGeomFromMap();
+  }
+
+  // Lee la geometría dibujada en el mapa y la coloca en el campo geom.
+  private loadGeomFromMap(): void {
+    const wkt = localStorage.getItem('geom_poligonos');
+
+    if (wkt) {
+      this.geom.setValue(wkt);
+      this.geom.markAsDirty();
+      this.geom.updateValueAndValidity();
+      localStorage.removeItem('geom_poligonos');
+      this.serverMessage = 'Geometría de polígono cargada desde el mapa';
+    }
+  }
 
   // Construye las rutas hacia Django.
   private endpoint(action: string, id: string | null = null): string {
@@ -233,5 +250,6 @@ export class PoligonoFormComponent {
   clearForm() {
     this.controlsGroup.reset();
     this.serverMessage = '';
+    localStorage.removeItem('geom_poligonos');
   }
 }

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class SettingsService {
   public DEBUG = true;
   // 1 = local, 2 = dominio/produccion
-  public mode = 1;
+  public mode = 2;
 
   public API_URL = '';
   public GEOSERVER_URL = '';
@@ -19,9 +19,9 @@ export class SettingsService {
       this.WEB_URL = 'http://localhost:4200/';
     } else if (this.mode === 2) {
       // Cambia esto por tu dominio .com cuando publiques.
-      this.API_URL = 'https://api.tudominio.com/';
-      this.GEOSERVER_URL = 'https://tudominio.com/geoserver/';
-      this.WEB_URL = 'https://tudominio.com/';
+      this.API_URL = 'https://sanchez.geomaticaupv.es/api/';
+      this.GEOSERVER_URL = 'https://geomaticaupv.es/geoserver/';
+      this.WEB_URL = 'https://sanchez.geomaticaupv.es/';
     }
   }
 }

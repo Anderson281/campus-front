@@ -1,3 +1,12 @@
-<div #mapContainer id="map">
+<div class="map-shell">
+  <div class="map-tools">
+    <button type="button" (click)="startDrawing('Polygon')">ZONE</button>
+    <button type="button" (click)="startDrawing('LineString')">TRAIL</button>
+    <button type="button" (click)="startDrawing('Point')">POINT</button>
+    <button type="button" class="stop" (click)="stopDrawing()">STOP</button>
+  </div>
 
+  <div #mapContainer id="map"></div>
 </div>
+
+<p class="map-message" *ngIf="message">{{ message }}</p>
